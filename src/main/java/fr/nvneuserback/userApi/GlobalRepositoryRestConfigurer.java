@@ -1,7 +1,4 @@
-package com.nvne.webbackend;
-
-import com.nvne.webbackend.entities.AutoEntrepreneur;
-import com.nvne.webbackend.entities.Entreprise;
+package fr.nvneuserback.userApi;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
@@ -14,13 +11,14 @@ public class GlobalRepositoryRestConfigurer implements RepositoryRestConfigurer 
 	public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
 		config.setReturnBodyOnCreate(true);
 		config.setReturnBodyOnUpdate(true);
-		config.exposeIdsFor(Entreprise.class,AutoEntrepreneur.class);
 		config.getCorsRegistry()
 			.addMapping("/**")
-			.allowedOrigins("*")
+			.allowedOrigins("https://www.nvne.fr")
+			.allowedOrigins("https://admin.nvne.fr")
+			.allowedOrigins("https://accounts.nvne.fr")
 			.allowedHeaders("*")
 			.allowedMethods("OPTIONS","HEAD","GET","PUT","POST","DELETE","PATCH");
-		RepositoryRestConf igurer.super.configureRepositoryRestConfiguration(config);
+		RepositoryRestConfigurer.super.configureRepositoryRestConfiguration(config);
 	}
 	
 }

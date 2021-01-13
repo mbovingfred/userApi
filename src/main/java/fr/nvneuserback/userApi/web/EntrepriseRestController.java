@@ -89,4 +89,14 @@ public class EntrepriseRestController {
 //		entreprise = new Entreprise();
         return entrepriseRepository.findAll();
     }
+    
+    @RequestMapping(value="/",method = RequestMethod.GET)
+	public ResponseEntity entrepri() {
+//    	System.out.println("Registering a new enterprise ...");
+//    	Entreprise entreprise = entrepriseService.findByEmail(entrepriseForm.getEmail());
+//		if (entreprise != null)
+//			throw new RuntimeException("This user already exists");
+//		entreprise = new Entreprise();
+        return ResponseEntity.ok().build();
+    }
 }
