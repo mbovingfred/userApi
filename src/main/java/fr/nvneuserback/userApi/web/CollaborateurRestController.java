@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.DateFormat;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -86,6 +88,7 @@ public class CollaborateurRestController {
 		if (collaborateurService.findByEmail(collaborateur.getEmail()) != null)
 			throw new RuntimeException("This user already exists");
 //		collaborateur = new Collaborateur();
+		collaborateur.setDateInscription(DateFormat.getDateTimeInstance().format(new Date()));
         collaborateur =  collaborateurService.registerCollaborateur(collaborateur);
         ConfirmationToken confirmationToken = new ConfirmationToken();
 
@@ -98,7 +101,7 @@ public class CollaborateurRestController {
         mailMessage.setText("Pour confirmer votre adresse email, cliquez sur le lien ci-après. Si vous n'avez pas déclanchez ce processus, veuillez ignorer ce mail. "
         +"http://localhost:8082/confirm-account?token="+confirmationToken.getConfirmationToken());
 
-        emailSenderService.sendEmail(mailMessage);
+//        emailSenderService.sendEmail(mailMessage);
         
         return collaborateur;
     }

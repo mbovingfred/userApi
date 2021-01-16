@@ -1,5 +1,8 @@
 package fr.nvneuserback.userApi;
 
+import java.text.DateFormat;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -27,7 +30,7 @@ public class UserApiApplication implements CommandLineRunner{
 //		accountService.addRoleToUse("admin", "USER");
 //		accountService.addRoleToUse("user", "USER");
 //		
-		Collaborateur col = new Collaborateur(null, "test", "testprénom", "bac+5", "contact@nvne.com", "/cv");
+		Collaborateur col = new Collaborateur(null, "test", "testprénom", null, "contact@nvne.com", "/cv", "34625746", DateFormat.getDateTimeInstance().format(new Date()), false, null, null);
 		collaborateurRepository.save(col);
 	}
 

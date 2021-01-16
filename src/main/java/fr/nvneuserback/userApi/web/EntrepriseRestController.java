@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.DateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -77,6 +79,7 @@ public class EntrepriseRestController {
 //		if (entreprise != null)
 //			throw new RuntimeException("This user already exists");
 //		entreprise = new Entreprise();
+    	e.setDateInscription(DateFormat.getDateTimeInstance().format(new Date()));
         return entrepriseRepository.save(e);
     }
     

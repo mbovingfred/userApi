@@ -18,7 +18,13 @@ public class Collaborateur {
 	private Long id;
 	private String noms;
 	private String prenoms;
-	private String niveauEtude;
+	private String dateNaiss;
+//	private String niveauEtude;
 	private String email;
 	private String cv;
+	private String tel;
+	private String dateInscription;
+	private boolean contacte;
+	private String infosSupp;
+	private String notes;
 }

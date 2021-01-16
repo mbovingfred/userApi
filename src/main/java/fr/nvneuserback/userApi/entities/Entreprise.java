@@ -23,4 +23,8 @@ public class Entreprise {
 	private String tel;
 	private boolean ackCgu;
 	private boolean ackCallBack;
+	private String dateInscription;
+	private boolean contacte;
+	private String infosSupp;
+	private String notes;
 }
