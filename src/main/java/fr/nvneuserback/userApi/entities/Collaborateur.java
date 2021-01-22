@@ -1,9 +1,13 @@
 package fr.nvneuserback.userApi.entities;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import org.springframework.data.annotation.Transient;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,8 +27,13 @@ public class Collaborateur {
 	private String email;
 	private String cv;
 	private String tel;
-	private String dateInscription;
+	private Date dateInscription;
 	private boolean contacte;
 	private String infosSupp;
 	private String notes;
+	private Date dateContact;
+	@Transient
+	private String dateFormContact;
+	@Transient
+	private String heureFormContact;
 }

@@ -30,7 +30,7 @@ public class UserApiApplication implements CommandLineRunner{
 //		accountService.addRoleToUse("admin", "USER");
 //		accountService.addRoleToUse("user", "USER");
 //		
-		Collaborateur col = new Collaborateur(null, "test", "testprénom", null, "contact@nvne.com", "/cv", "34625746", DateFormat.getDateTimeInstance().format(new Date()), false, null, null);
+		Collaborateur col = new Collaborateur(null, "test", "testprénom", null, "contact@nvne.com", "/cv", "34625746", new Date(), false, null, null, null, null, null);
 		collaborateurRepository.save(col);
 	}
 

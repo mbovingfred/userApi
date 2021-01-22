@@ -26,8 +26,7 @@ public class CollaborateurServiceImpl implements CollaborateurService {
 
 	@Override
 	public Collaborateur findByEmail(String email) {
-		collaborateurRepository.findByEmail(email);
-		return null;
+		return collaborateurRepository.findByEmail(email);
 	}
 
 }

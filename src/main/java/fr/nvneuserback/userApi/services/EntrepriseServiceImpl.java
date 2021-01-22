@@ -18,7 +18,6 @@ public class EntrepriseServiceImpl implements EntrepriseService {
 
 	@Override
 	public Entreprise findByEmail(String email) {
-		entrepriseRepository.findByEmail(email);
-		return null;
+		return entrepriseRepository.findByEmail(email);
 	}
 }

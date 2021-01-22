@@ -79,7 +79,16 @@ public class EntrepriseRestController {
 //		if (entreprise != null)
 //			throw new RuntimeException("This user already exists");
 //		entreprise = new Entreprise();
-    	e.setDateInscription(DateFormat.getDateTimeInstance().format(new Date()));
+    	e.setDateInscription(new Date());
+        return entrepriseRepository.save(e);
+    }
+    
+
+    @RequestMapping(value="/api/prendreRDVEntreprise",method = RequestMethod.PATCH)
+	public Entreprise prendreRDVEntreprise(@RequestBody Entreprise e) {
+    	e.getDateContact().setHours(Integer.parseInt(e.getHeureFormContact().substring(0, 2)));
+    	e.getDateContact().setMinutes(Integer.parseInt(e.getHeureFormContact().substring(3)));
+//    	e.setId(entrepriseRepository.findByEmail(e.getEmail()).getId());
         return entrepriseRepository.save(e);
     }
     

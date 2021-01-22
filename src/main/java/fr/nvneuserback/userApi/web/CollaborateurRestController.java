@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,6 +28,7 @@ import fr.nvneuserback.userApi.dao.CollaborateurRepository;
 import fr.nvneuserback.userApi.dao.ConfirmationTokenRepository;
 import fr.nvneuserback.userApi.entities.Collaborateur;
 import fr.nvneuserback.userApi.entities.ConfirmationToken;
+import fr.nvneuserback.userApi.entities.Entreprise;
 import fr.nvneuserback.userApi.services.CollaborateurService;
 import fr.nvneuserback.userApi.services.EmailSenderService;
 @RestController
@@ -35,6 +37,9 @@ public class CollaborateurRestController {
 	
 	@Autowired
 	private CollaborateurService collaborateurService;
+	
+	@Autowired
+	private CollaborateurRepository collaborateurRepository;
 
     public CollaborateurRestController(CollaborateurRepository collaborateurRepository) {
 //        this.collaborateurRepository = collaborateurRepository;
@@ -82,13 +87,21 @@ public class CollaborateurRestController {
         }
     }
     
+    @RequestMapping(value="/api/prendreRDVCollaborateur",method = RequestMethod.PATCH)
+	public Collaborateur prendreRDVCollaborateur(@RequestBody Collaborateur e) {
+    	e.getDateContact().setHours(Integer.parseInt(e.getHeureFormContact().substring(0, 2)));
+    	e.getDateContact().setMinutes(Integer.parseInt(e.getHeureFormContact().substring(3)));
+//    	e.setId(entrepriseRepository.findByEmail(e.getEmail()).getId());
+        return collaborateurRepository.save(e);
+    }
+    
     @PostMapping("/api/registerCollaborateur")
 	public Collaborateur register(@RequestBody Collaborateur collaborateur) {
 //    	Collaborateur collaborateur = ;
 		if (collaborateurService.findByEmail(collaborateur.getEmail()) != null)
 			throw new RuntimeException("This user already exists");
 //		collaborateur = new Collaborateur();
-		collaborateur.setDateInscription(DateFormat.getDateTimeInstance().format(new Date()));
+		collaborateur.setDateInscription(new Date());
         collaborateur =  collaborateurService.registerCollaborateur(collaborateur);
         ConfirmationToken confirmationToken = new ConfirmationToken();
 
