@@ -8,7 +8,7 @@ RUN mkdir /root/upload
 # Adding backend to container
 ADD target/userApi*.jar /app.jar
 
-CMD [ "java", "-jar", "/app.jar", "--spring.profiles.active=prod" ]
+CMD [ "java", "-jar", "/app.jar", "-Dspring.profiles.active=prod" ]
 
 # Exposing container port for binding with host
 EXPOSE 8081

@@ -72,7 +72,7 @@ public class EntrepriseRestController {
             }
         }
     }
-    @RequestMapping(value="/api/inscripEntreprise",method = RequestMethod.POST)
+    @RequestMapping(value="/api/users/register/inscripEntreprise",method = RequestMethod.POST)
 	public Entreprise register(@RequestBody Entreprise e) {
 //    	System.out.println("Registering a new enterprise ...");
 //    	Entreprise entreprise = entrepriseService.findByEmail(entrepriseForm.getEmail());
@@ -84,19 +84,20 @@ public class EntrepriseRestController {
     }
     
 
-    @RequestMapping(value="/api/prendreRDVEntreprise",method = RequestMethod.PATCH)
+    @RequestMapping(value="/api/users/register/prendreRDVEntreprise",method = RequestMethod.PATCH)
 	public Entreprise prendreRDVEntreprise(@RequestBody Entreprise e) {
     	System.out.println("heure: "+Integer.parseInt(e.getHeureFormContact().substring(0, 2))+Integer.parseInt(e.getHeureFormContact().substring(3)));
     	System.out.println("date: "+e.getDateContact());
     	System.out.println("dateFromMillis: "+new Date(Long.parseLong(e.getDateFormContact())));
-    	e.setDateContact(new Date(Long.parseLong(e.getDateFormContact())));
-    	e.getDateContact().setHours(Integer.parseInt(e.getHeureFormContact().substring(0, 2)));
-    	e.getDateContact().setMinutes(Integer.parseInt(e.getHeureFormContact().substring(3)));
+        Entreprise entreprise = entrepriseRepository.findById(e.getId()).orElseThrow();
+    	entreprise.setDateContact(new Date(Long.parseLong(e.getDateFormContact())));
+    	entreprise.getDateContact().setHours(Integer.parseInt(e.getHeureFormContact().substring(0, 2)));
+    	entreprise.getDateContact().setMinutes(Integer.parseInt(e.getHeureFormContact().substring(3)));
 //    	e.setId(entrepriseRepository.findByEmail(e.getEmail()).getId());
-        return entrepriseRepository.save(e);
+        return entrepriseRepository.save(entreprise);
     }
     
-    @RequestMapping(value="/entrepris",method = RequestMethod.GET)
+    @RequestMapping(value="/api/users/register/entrepris",method = RequestMethod.GET)
 	public List<Entreprise> entrepris() {
 //    	System.out.println("Registering a new enterprise ...");
 //    	Entreprise entreprise = entrepriseService.findByEmail(entrepriseForm.getEmail());

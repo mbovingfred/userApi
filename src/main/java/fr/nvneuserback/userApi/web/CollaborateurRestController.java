@@ -87,7 +87,7 @@ public class CollaborateurRestController {
         }
     }
     
-    @RequestMapping(value="/api/prendreRDVCollaborateur",method = RequestMethod.PATCH)
+    @RequestMapping(value="/api/users/register/prendreRDVCollaborateur",method = RequestMethod.PATCH)
 	public Collaborateur prendreRDVCollaborateur(@RequestBody Collaborateur e) {
     	System.out.println("heure: "+Integer.parseInt(e.getHeureFormContact().substring(0, 2))+Integer.parseInt(e.getHeureFormContact().substring(3)));
     	System.out.println("date: "+e.getDateContact());
@@ -99,7 +99,7 @@ public class CollaborateurRestController {
         return collaborateurRepository.save(e);
     }
     
-    @PostMapping("/api/registerCollaborateur")
+    @PostMapping("/api/users/register/registerCollaborateur")
 	public Collaborateur register(@RequestBody Collaborateur collaborateur) {
 //    	Collaborateur collaborateur = ;
 		if (collaborateurService.findByEmail(collaborateur.getEmail()) != null)
