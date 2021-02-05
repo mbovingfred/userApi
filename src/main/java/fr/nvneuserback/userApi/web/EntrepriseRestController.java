@@ -85,16 +85,16 @@ public class EntrepriseRestController {
     
 
     @RequestMapping(value="/api/users/register/prendreRDVEntreprise",method = RequestMethod.PATCH)
-	public Entreprise prendreRDVEntreprise(@RequestBody Entreprise e) {
-    	System.out.println("heure: "+Integer.parseInt(e.getHeureFormContact().substring(0, 2))+Integer.parseInt(e.getHeureFormContact().substring(3)));
-    	System.out.println("date: "+e.getDateContact());
+	public Entreprise prendreRDVEntreprise(@RequestBody Entreprise e) throws Exception {
     	System.out.println("dateFromMillis: "+new Date(Long.parseLong(e.getDateFormContact())));
-        Entreprise entreprise = entrepriseRepository.findById(e.getId()).orElseThrow();
-    	entreprise.setDateContact(new Date(Long.parseLong(e.getDateFormContact())));
-    	entreprise.getDateContact().setHours(Integer.parseInt(e.getHeureFormContact().substring(0, 2)));
-    	entreprise.getDateContact().setMinutes(Integer.parseInt(e.getHeureFormContact().substring(3)));
+//    	System.out.println("heure: "+Integer.parseInt(e.getHeureFormContact().substring(0, 2))+Integer.parseInt(e.getHeureFormContact().substring(3)));
+    	System.out.println("date: "+e.getDateContact());
+//        Entreprise entreprise = entrepriseRepository.findById(e.getId()).orElseThrow(() -> new Exception("Could not find Resource"));
+    	e.setDateContact(new Date(Long.parseLong(e.getDateFormContact())));
+//    	entreprise.getDateContact().setHours(Integer.parseInt(e.getHeureFormContact().substring(0, 2)));
+//    	entreprise.getDateContact().setMinutes(Integer.parseInt(e.getHeureFormContact().substring(3)));
 //    	e.setId(entrepriseRepository.findByEmail(e.getEmail()).getId());
-        return entrepriseRepository.save(entreprise);
+        return entrepriseRepository.save(e);
     }
     
     @RequestMapping(value="/api/users/register/entrepris",method = RequestMethod.GET)

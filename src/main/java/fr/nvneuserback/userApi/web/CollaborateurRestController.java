@@ -89,12 +89,12 @@ public class CollaborateurRestController {
     
     @RequestMapping(value="/api/users/register/prendreRDVCollaborateur",method = RequestMethod.PATCH)
 	public Collaborateur prendreRDVCollaborateur(@RequestBody Collaborateur e) {
-    	System.out.println("heure: "+Integer.parseInt(e.getHeureFormContact().substring(0, 2))+Integer.parseInt(e.getHeureFormContact().substring(3)));
-    	System.out.println("date: "+e.getDateContact());
     	System.out.println("dateFromMillis: "+new Date(Long.parseLong(e.getDateFormContact())));
+//    	System.out.println("heure: "+Integer.parseInt(e.getHeureFormContact().substring(0, 2))+Integer.parseInt(e.getHeureFormContact().substring(3)));
+    	System.out.println("date: "+e.getDateContact());
     	e.setDateContact(new Date(Long.parseLong(e.getDateFormContact())));
-    	e.getDateContact().setHours(Integer.parseInt(e.getHeureFormContact().substring(0, 2)));
-    	e.getDateContact().setMinutes(Integer.parseInt(e.getHeureFormContact().substring(3)));
+//    	e.getDateContact().setHours(Integer.parseInt(e.getHeureFormContact().substring(0, 2)));
+//    	e.getDateContact().setMinutes(Integer.parseInt(e.getHeureFormContact().substring(3)));
 //    	e.setId(entrepriseRepository.findByEmail(e.getEmail()).getId());
         return collaborateurRepository.save(e);
     }
