@@ -4,7 +4,7 @@ metadata:
   name: nvne-user-admin-service
   namespace: nvne
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: nvne-user-admin-service
@@ -16,7 +16,7 @@ spec:
       # serviceAccountName: nvne-user-service-ksa
       containers:
         - name: nvne-user-admin-service
-          image: gcr.io/single-actor-306917/nvne-user-admin-service:0.0.6
+          image: gcr.io/single-actor-306917/nvne-user-admin-service:0.0.12
           ports:
             - containerPort: 8081
           env:
