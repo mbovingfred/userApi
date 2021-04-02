@@ -21,6 +21,7 @@ public class KeycloakSpringSecurityConfig extends KeycloakWebSecurityConfigurerA
 		super.configure(http);
 		http.authorizeRequests()
 			.antMatchers("/api/users/register/**").permitAll()
+//                        .antMatchers("/api/**").permitAll();
                         .antMatchers("/api/**").hasAuthority("user-manager");
 //                        .antMatchers("/api/**").denyAll();
 //		http.authorizeRequests()
